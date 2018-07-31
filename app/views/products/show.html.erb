@@ -9,8 +9,8 @@ $(function() {
   $(".js-next-product").on("click", function() {
     var nextId = parseInt($(".js-next-product").attr("data-id")) + 1;
     $.getJSON("/products/" + nextId + "/data", function(data) {
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
+    $.getJSON("/products/" + id + "/description", function(description) {
+      $.getJSON("/products/" + id + "/inventory", function(inventory) {
         var inventoryText = "<strong>Available</strong>";
         if(inventory === "false"){
           inventoryText = "<strong>Sold Out</strong>";
