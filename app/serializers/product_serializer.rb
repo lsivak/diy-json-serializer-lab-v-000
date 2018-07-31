@@ -10,11 +10,6 @@ class ProductSerializer
     serialized_product += '"inventory": ' + product.inventory.to_s + ', '
     serialized_product += '"description": "' + product.description + '", '
 
-    # the author association can also be represented in JSON
-    serialized_post += '"author": {'
-    serialized_post += '"name": "' + post.author.name + '"}'
-
-    # and end with the close brace
-    serialized_post += '}'
+    serialized_productt += '}'
   end
 end
