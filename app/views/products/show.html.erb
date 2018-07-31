@@ -4,10 +4,25 @@
 <p class="productBody"><%= @product.description %></p>
 
 <script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.getJSON("/posts/" + nextId + "/post_data", function(data) {
+      $(".authorName").text(data["author"]["name"]);
+      $(".postTitle").text(data["title"]);
+      $(".postBody").text(data["description"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    });
+  });
+});
+</script>
+
+<script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-next-product").on("click", function() {
-    var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.getJSON("/products/" + id + "/description", function(description) {
       $.get("/products/" + id + "/inventory", function(inventory) {
         var inventoryText = "<strong>Available</strong>";
         if(inventory === "false"){
